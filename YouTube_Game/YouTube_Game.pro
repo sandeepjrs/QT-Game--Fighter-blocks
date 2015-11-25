@@ -15,11 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp \
     myrect.cpp \
     bullet.cpp \
-    enemy.cpp
+    enemy.cpp \
+    game.cpp \
+    score.cpp
 
 HEADERS  += \
     myrect.h \
     bullet.h \
-    enemy.h
+    enemy.h \
+    game.h \
+    score.h
 
 FORMS    += mainwindow.ui

@@ -1,10 +1,7 @@
 #include <QApplication>
-#include<QGraphicsScene>
-#include "myrect.h"
-#include<QGraphicsView>
-#include<qdebug.h>
-#include <QScrollBar>
-#include<QTimer>
+
+#include "game.h"
+
 
 /*
  * prereq
@@ -36,53 +33,17 @@
  * 3. QgraphicsItem Coordinates
  */
 
+Game *game;
 
 int main(int argc, char *argv[])
 
 {
 
     QApplication a(argc, argv);
-
-    //create a scene
-    QGraphicsScene * scene= new QGraphicsScene();
-
-    // create a item to put into the scene
-    MyRect *player= new MyRect();
-    player->setRect(0,0,50,50);
-
-    //add item to the scene
-
-    scene->addItem(player);
-
-    //***********to create the item focousable**********
-
-    //make a rect focouble
-
-    //step-1
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    //stp-2
-    player->setFocus();
+    game=new Game();
+    game->show();
 
 
-
-
-    //add view
-
-    QGraphicsView *view=new QGraphicsView(scene);
-    //view->setScene(scene);// alternative way- we already added in the constructer so we do not need this
-
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->show();
-    view->setFixedSize(800,600);
-    scene->setSceneRect(0,0,800,600);
-    player->setPos(view->width()/2,view->height()-player->rect().height());
-
-    // spawn enemies
-
-    QTimer *timer=new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
-    timer->start(2000);
 
 
 
